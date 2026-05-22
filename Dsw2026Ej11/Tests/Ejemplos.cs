@@ -1,6 +1,6 @@
 ﻿using Dsw2026Ej11.Collections;
 using Dsw2026Ej11.Domain;
-
+using System.Collections.Generic;
 namespace Dsw2026Ej11.Tests;
 
 
@@ -25,16 +25,16 @@ internal class Ejemplos
         casoList.AgregarAlumnos(a3);
 
         //LISTA DE ALUMNOS
-       List<Alumno> lista = casoList.RetornarLista();
+       IEnumerable<Alumno> lista = casoList.RetornarLista();
         Console.WriteLine("\nALUMNOS:");
-        for(int i=0; i < lista.Count; i++)
+        for(int i=0; i < lista.Count(); i++)
         {
-            Console.WriteLine(lista[i]);
+            Console.WriteLine(lista.ElementAt(i));
         }
 
         //ALUMNO EXISTENTE
         Console.WriteLine("\nBuscar a: Gomez Carlos");
-        Alumno encontrado = casoList.BuscarPorNombre("Gomez Carlos");
+        Alumno? encontrado = casoList.BuscarPorNombre("Gomez Carlos");
         if (encontrado != null)
         {
             Console.WriteLine(encontrado);
@@ -42,7 +42,7 @@ internal class Ejemplos
 
         //ALUMNO INEXISTENTE
         Console.WriteLine("\nBuscar a: Mariani Gisella");
-        Alumno noEncontrado = casoList.BuscarPorNombre("Mariani Gisella");
+        Alumno? noEncontrado = casoList.BuscarPorNombre("Mariani Gisella");
         if(noEncontrado == null)
         {
             Console.WriteLine("\nNo existe");
@@ -53,9 +53,9 @@ internal class Ejemplos
         Console.WriteLine("\nEliminar a Gomez Carlos");
         lista = casoList.RetornarLista();
 
-        for (int i = 0; i < lista.Count; i++)
+        for (int i = 0; i < lista.Count(); i++)
         {
-            Console.WriteLine(lista[i]);
+            Console.WriteLine(lista.ElementAt(i));
         }
 
         //ELIMINAR PRIMER ELEMENTO
@@ -63,9 +63,9 @@ internal class Ejemplos
         Console.WriteLine("\nEliminar primer elemento");
         lista = casoList.RetornarLista();
 
-        for (int i = 0; i < lista.Count; i++)
+        for (int i = 0; i < lista.Count(); i++)
         {
-            Console.WriteLine(lista[i]);
+            Console.WriteLine(lista.ElementAt(i));
         }
     }
 
@@ -89,11 +89,11 @@ internal class Ejemplos
         //LISTA
         Console.WriteLine("\nDICCIONARIO DE ALUMNOS");
 
-        List<int> claves = casoDictionary.RetornarDiccionario().Keys.ToList();
+        IEnumerable<int> claves = casoDictionary.RetornarDiccionario().Keys.ToList();
 
-        for (int i = 0; i < claves.Count; i++)
+        for (int i = 0; i < claves.Count(); i++)
         {
-            int clave = claves[i];
+            int clave = claves.ElementAt(i);
             Alumno alumno = casoDictionary.RetornarDiccionario()[clave];
 
             Console.WriteLine($"Legajo: {clave} - {alumno}");
@@ -125,9 +125,9 @@ internal class Ejemplos
 
         claves = casoDictionary.RetornarDiccionario().Keys.ToList();
 
-        for (int i = 0; i < claves.Count; i++)
+        for (int i = 0; i < claves.Count(); i++)
         {
-            int clave = claves[i];
+            int clave = claves.ElementAt(i);
             Alumno alumno = casoDictionary.RetornarDiccionario()[clave];
 
             Console.WriteLine($"Legajo: {clave} - {alumno}");
@@ -153,20 +153,20 @@ internal class Ejemplos
 
         Console.WriteLine("\nLibro con ID mayor a 15");
 
-        List<Libro> listaId = casoLinq.GetListById();
+        IEnumerable<Libro> listaId = casoLinq.GetListById();
 
-        for (int i = 0; i < listaId.Count; i++)
+        for (int i = 0; i < listaId.Count(); i++)
         {
-            Console.WriteLine(listaId[i]);
+            Console.WriteLine(listaId.ElementAt(i));
         }
 
         Console.WriteLine("\nLibros");
 
-        List<string> listaLibros = casoLinq.GetLibro();
+        IEnumerable<string> listaLibros = casoLinq.GetLibro();
 
-        for (int i = 0; i < listaLibros.Count; i++)
+        for (int i = 0; i < listaLibros.Count(); i++)
         {
-            Console.WriteLine(listaLibros[i]);
+            Console.WriteLine(listaLibros.ElementAt(i));
         }
 
         Console.WriteLine("\nLibro con mayor precio");
@@ -177,20 +177,20 @@ internal class Ejemplos
 
         Console.WriteLine("\nLibros mayores al promedio");
 
-        List<Libro> listaPromedio = casoLinq.GetMayorPromedio();
+        IEnumerable<Libro> listaPromedio = casoLinq.GetMayorPromedio();
 
-        for (int i = 0; i < listaPromedio.Count; i++)
+        for (int i = 0; i < listaPromedio.Count(); i++)
         {
-            Console.WriteLine(listaPromedio[i]);
+            Console.WriteLine(listaPromedio.ElementAt(i));
         }
 
         Console.WriteLine("\nLibros ordenados por titulo");
 
-        List<Libro> listaOrdenada = casoLinq.GetOrdenadosPorTitulo();
+        IEnumerable<Libro> listaOrdenada = casoLinq.GetOrdenadosPorTitulo();
 
-        for (int i = 0; i < listaOrdenada.Count; i++)
+        for (int i = 0; i < listaOrdenada.Count(); i++)
         {
-            Console.WriteLine(listaOrdenada[i]);
+            Console.WriteLine(listaOrdenada.ElementAt(i));
         }
     }
 }

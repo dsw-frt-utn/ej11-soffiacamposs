@@ -19,7 +19,7 @@ using Dsw2026Ej11.Domain;
  */
 public class CasoLinq
 {
-    public List<Libro> libros = Libro.CrearLista();
+    public IEnumerable<Libro> libros = Libro.CrearLista();
 
     public Libro GetPrimero()
     {
@@ -41,18 +41,16 @@ public class CasoLinq
         return libros.Average(l => l.Precio);
     }
 
-    public List<Libro> GetListById()
+    public IEnumerable<Libro> GetListById()
     {
         return libros
-        .Where(l => l.Id > 15)
-        .ToList();
+        .Where(l => l.Id > 15);
     }
 
-    public List<string> GetLibro()
+    public IEnumerable<string> GetLibro()
     {
         return libros
-        .Select(l => $"{l.Titulo} - {l.Precio:C}")
-        .ToList();
+        .Select(l => $"{l.Titulo} - {l.Precio:C}");
     }
 
     public Libro GetMayorPrecio()
@@ -69,18 +67,16 @@ public class CasoLinq
             .First();
     }
 
-    public List<Libro> GetMayorPromedio()
+    public IEnumerable<Libro> GetMayorPromedio()
     {
         decimal promedio = libros.Average(l => l.Precio);
         return libros
-            .Where(l => l.Precio > promedio)
-            .ToList();
+            .Where(l => l.Precio > promedio);
     }
 
-    public List<Libro> GetOrdenadosPorTitulo()
+    public IEnumerable<Libro> GetOrdenadosPorTitulo()
     {
         return libros
-            .OrderByDescending(l => l.Titulo)
-            .ToList();
+            .OrderByDescending(l => l.Titulo);
     }
 }
